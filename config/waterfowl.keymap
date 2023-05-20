@@ -1,0 +1,105 @@
+/*
+ * Copyright (c) 2022 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+	keymap {
+		compatible = "zmk,keymap";
+
+		default_layer {
+/* QWERTY
+ *
+ * ,----------------------------------.                      ,----------------------------------.
+ * |   Q  |   W  |   E  |   R  |   T  |                      |   Y  |   U  |   I  |   O  |   P  |
+ * |------+------+------+------+------|                      |------+------+------+------+------|
+ * |   A  |   S  |   D  |   F  |   G  |                      |   H  |   J  |   K  |   L  | ENTER|
+ * |------+------+------+------+------|  ,-----.    ,-----.  |------+------+------+------+------|
+ * |   Z  |   X  |   C  |   V  |   B  |  | ESC |    | DEL |  |   N  |   M  |   ,  |   .  |  /?  |
+ * `----------------------------------'  `-----'    `-----'  `----------------------------------'
+ *          ,-----.   ,--------------------.            ,--------------------.   ,-----. 
+ *          | Caps|   | LSFT | SPACE | TAB |            |  L1   | BS |  L2   |   |Gaming|	
+ *          `-----'   `--------------------'            `--------------------'   `-----'
+ */
+			bindings = <
+	&kp Q		&kp W		&kp E		&kp R		&kp T							&kp Y	&kp U		&kp I		&kp O		&kp P
+	&kp A		&kp S		&kp D		&kp F		&kp G							&kp H	&kp J		&kp K		&kp L		&kp ENTER
+	&kp Z		&kp X		&kp C		&kp V		&kp B							&kp N	&kp M		&kp COMMA	&kp DOT		&kp FSLH
+				&kp CAPS	&kp LSHFT	&kp SPACE	&kp TAB	&kp ESC		&kp DEL	&mo symbol_layer &kp BSPC &mo navnum_layer	&kp C_MUTE
+			>;
+
+			sensor-bindings = <
+				&inc_dec_kp TAB RS(TAB)
+				&inc_dec_kp DOWN UP
+				&inc_dec_kp LEFT RIGHT
+				&inc_dec_kp C_VOL_DN C_VOL_UP
+			>;
+		};
+
+		navnum_layer {
+/* NAVNUM
+ *
+ * ,----------------------------------.                      ,----------------------------------.
+ * |   7  |   8  |   9  |   +  |   -  |                      |   =  |   [  |   ]  | next | back |
+ * |------+------+------+------+------|                      |------+------+------+------+------|
+ * |   4  |   5  |   6  |   *  |   /  |                      |  |\  |   {  |   }  |   ;  |  "   |
+ * |------+------+------+------+------|  ,-----.    ,-----.  |------+------+------+------+------|
+ * |   1  |   2  |   3  |   ^  | PAUSE|  | ESC |    | DEL |  |  _-  |   (  |   )  | BRGUP| BRGDN|
+ * `----------------------------------'  `-----'    `-----'  `----------------------------------'
+ *          ,-----.   ,--------------------.            ,--------------------.   ,-----. 
+ *          | Caps|   | LSFT | SPACE | TAB |            |  L1   | BS |  L2   |   |Gaming|	
+ *          `-----'   `--------------------'            `--------------------'   `-----'
+ */
+			bindings = <
+	&kp KP_N7	&kp KP_N8	&kp KP_N9	&kp KP_PLUS	&kp KP_MINUS				   &kp KP_EQUAL &kp LBKT	&kp RBKT	&kp C_NEXT	&kp C_PREVIOUS
+	&kp KP_N4	&kp KP_N5	&kp KP_N6 &kp KP_MULTIPLY &kp KP_DIVIDE				  	&kp BSLH	&kp LBRC	&kp RBRC	&kp SEMI	&kp RET
+	&kp KP_N1	&kp KP_N2	&kp KP_N3	&kp CARET	&kp C_PP						&kp MINUS	&kp LPAR	&kp RPAR	&kp C_BRI_UP &kp C_BRI_DN
+				&kp CAPS	&kp LSHFT	&kp SPACE	&kp TAB	&kp ESC		&kp DEL	&mo symbol_layer &kp BSPC &mo navnum_layer	&kp C_MUTE
+			>;
+
+			sensor-bindings = <
+				&inc_dec_kp TAB RS(TAB)
+				&inc_dec_kp DOWN UP
+				&inc_dec_kp LEFT RIGHT
+				&inc_dec_kp C_VOL_DN C_VOL_UP
+			>;
+		};
+
+		symbol_layer {
+/* SYM
+ *
+ * ,----------------------------------.                      ,----------------------------------.
+ * |  F1  |  F2  |  F3  |  F4  |  F5  |                      |  F6  |  F7  |  F8  |  F9  |  F10 |
+ * |------+------+------+------+------|                      |------+------+------+------+------|
+ * |   !  |   @  |   #  |   $  |   %  |                      |   ^  |   &  |   *  |  F11 |  F12 |
+ * |------+------+------+------+------|  ,-----.    ,-----.  |------+------+------+------+------|
+ * |      |   ~  |  NUM |      |      |  | ESC |    | DEL |  |      |      |  BT0 |  BT1 | BLT  |
+ * `----------------------------------'  `-----'    `-----'  `----------------------------------'
+ *          ,-----.   ,--------------------.            ,--------------------.   ,-----. 
+ *          | Caps|   | LSFT | SPACE | TAB |            |  L1   | BS |  L2   |   |Gaming|	
+ *          `-----'   `--------------------'            `--------------------'   `-----'
+ */
+			bindings = <
+	&kp F1		&kp F2		&kp F3		&kp F4		&kp F5							&kp F6		&kp F7		&kp F8		 &kp F9			&kp F10
+	&kp EXCL	&kp AT		&kp HASH	&kp DOLLR	&kp PRCNT					    &kp CARET 	&kp AMPS	&kp STAR	 &kp F11		&kp F12
+	&kp Z		&kp TILDE	&kp KP_NUMLOCK	&kp V		&kp B						&kp N		&kp M		&bt BT_SEL 0 &bt BT_SEL 1	&bt BT_CLR
+				&kp CAPS	&kp LSHFT	&kp SPACE	&kp TAB	&kp ESC		&kp DEL	&mo symbol_layer &kp BSPC &mo navnum_layer	&kp C_MUTE
+			>;
+
+			sensor-bindings = <
+				&inc_dec_kp TAB RS(TAB)
+				&inc_dec_kp DOWN UP
+				&inc_dec_kp LEFT RIGHT
+				&inc_dec_kp C_VOL_DN C_VOL_UP
+			>;
+		};
+
+
+
+	};
+};
