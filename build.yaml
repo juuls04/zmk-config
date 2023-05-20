@@ -13,11 +13,6 @@
 #
 ---
 include:
-  - board: waterfowl
-    shield: waterfowl_left
-  - board: nice_nano_v2
-    shield: waterfowl_right
-include:
   - board: nice_nano_v2
     shield: waterfowl_left
   - board: nice_nano_v2
